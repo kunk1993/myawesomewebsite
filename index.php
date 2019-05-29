@@ -27,65 +27,17 @@
 
 <?php if(isset($_POST['name']) && !empty($_POST['name'])): ?>
 
-<?php
-
-class WelcomeRV {
-	public $inputName = "";
-
-	public function __construct($name) {
-		$this->inputName = $name;
-	}
-
-	public function hello() {
-		return "Hello $this->inputName!";
-	}
-}
-
-class RVFooterDisplay {
-	public $username = "recon";
-  	public $password = "village";
-	public $role = "user";
-	public $offset = 29;
-
-	public function run() {
-		$check = $this->role - 1337;
-		$filename = "/var/www/html/contact/flag.txt";
-		if($check == 0 && $this->username == "Sherlock" && $this->password == "Holmes")
-		{
-			$stuff = fopen($filename, "r");
-			fseek($stuff, $this->offset);
-			echo fread($stuff, filesize($filename));
-		}
-		else
-		{
-			$stuff = fopen($filename, "r");
-			fseek($stuff, $this->offset);
-			echo fread($stuff, filesize($filename));
-		}
-	}
-}
-
-$welcome = new WelcomeRV($_POST['name']);
-
-?>
 	<div class="container-contact100">
                 <div class="wrap-contact100">
                         <form method="POST" class="contact100-form validate-form">
                                 <span style="padding: 0; word-wrap: break-word;" class="contact100-form-title">
-                                        <?php echo $welcome->hello(); ?>
+					<?php $name = $_POST['name']; ?>
+                                        <?php echo "Hello $name!"; ?>
                                 </span>
 			</form>
                 </div>
 		<div style="position: absolute; bottom: 0; width: 100%; text-align: center; padding-bottom: 25px; color: #FFFFFF;" class="footer">
-			<?php 
-				$myvar = unserialize($_POST['name']);
-				if(!$myvar) {
-					$sa = new RVFooterDisplay();
-                                        $sa->run();
-                		} else {
-                        		$myvar->run();
-				}
-			?>
+			Brought to you by ReconVillage
 		</div>
         </div>
 <?php else: ?>
